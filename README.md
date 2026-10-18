@@ -60,6 +60,17 @@ MIT
 
 ## Publicar online
 
+O projeto usa rotas com `#` (HashRouter) e caminhos relativos, então o build funciona em qualquer hospedagem estática.
+
+- **GitHub Pages (como está configurado):** o site publicado fica na pasta `docs/`. Depois de mudar o código, rode `npm run build`, copie o conteúdo de `dist/` para `docs/` e faça o push. No GitHub, *Settings → Pages* aponta para a branch `main`, pasta `/docs`.
+- **Netlify / Vercel:** comando de build `npm run build`, pasta de saída `dist`.
+
+## Licença
+
+MIT
+
+## Publicar online
+
 O projeto usa rotas com `#` (HashRouter) e caminhos relativos, então a pasta `dist/` funciona em qualquer hospedagem estática.
 
 - **GitHub Pages:** suba o projeto para um repositório, vá em *Settings → Pages* e escolha *GitHub Actions* como fonte. O workflow em `.github/workflows/deploy.yml` publica a cada push na `main`.
