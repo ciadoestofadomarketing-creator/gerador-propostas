@@ -20,18 +20,21 @@ export function EditorPanel({ p, onExport, exporting }: EditorPanelProps) {
     <aside className="flex h-full w-full flex-col border-r border-soft bg-paper lg:sticky lg:top-0 lg:h-screen lg:w-[380px] lg:shrink-0">
       <div className="sticky top-[53px] z-10 border-b border-soft bg-paper px-5 py-4 lg:top-0">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-1.5 text-sm text-ink-dim hover:text-ink">
+          <Link to="/nova" className="flex items-center gap-1.5 text-sm text-ink-dim hover:text-ink">
             <ArrowLeft size={16} /> Nova proposta
           </Link>
           <span className="flex items-center gap-1 text-xs text-ink-dim">
             <Check size={14} className="text-accent" /> Auto-salvo
           </span>
         </div>
+        <p className="mt-3 text-[11px] leading-snug text-ink-dim">
+          Valores, prazos e o nome do cliente são exemplos. Revise antes de exportar.
+        </p>
         <button
           type="button"
           onClick={onExport}
           disabled={exporting}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-app-bg transition hover:brightness-110 disabled:opacity-60"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
         >
           <FileDown size={18} /> {exporting ? "Gerando PDF..." : "Exportar PDF"}
         </button>

@@ -1,4 +1,6 @@
-# Gerador de Propostas Comerciais
+# Propostas DP NeXT
+
+Gerador de propostas comerciais da **DP NeXT — Soluções Digitais**, focado em projetos de desenvolvimento de aplicativos. O app abre direto no editor, com o logo, as cores (azul-marinho, azul elétrico, ciano e laranja) e a tipografia do manual da marca.
 
 Ferramenta open source para montar, em minutos, uma proposta comercial premium e persuasiva, com preview A4 em tempo real e exportação em PDF.
 
@@ -22,7 +24,8 @@ React 19 + TypeScript · Vite 7 · Tailwind CSS v4 (sem `tailwind.config.js`) ·
 
 | Rota | O que faz |
 | --- | --- |
-| `#/` | Home com os 6 modelos e o wizard guiado |
+| `#/` | Abre o rascunho mais recente (ou cria um novo) |
+| `#/nova` | Começa uma proposta nova a partir do modelo DP NeXT |
 | `#/editor/:id` | Painel de edição à esquerda e preview A4 à direita |
 
 ## Estrutura
@@ -30,33 +33,27 @@ React 19 + TypeScript · Vite 7 · Tailwind CSS v4 (sem `tailwind.config.js`) ·
 ```
 src/
   main.tsx                     rotas
-  styles.css                   temas, pares de fontes e classes do documento
+  styles.css                   temas DP NeXT (escuro/claro), fontes e classes do documento
+  assets/                      logos oficiais DP NeXT (fundo escuro e claro)
   lib/
     proposal.ts                tipos, utilitários (fmtBRL, realPrice...) e store Zustand
-    templates.ts               os 6 modelos pré-preenchidos + fromTemplate()
+    templates.ts               modelo DP NeXT de desenvolvimento de app + fromTemplate()
     exportPdf.ts               geração do PDF (html-to-image + jsPDF)
   pages/
-    HomePage.tsx
+    StartPage.tsx              abre direto no editor
     EditorPage.tsx             toggle mobile, overlay de export, "não encontrada"
   components/proposal/
     ProposalPreview.tsx        monta capa + seções na ordem escolhida
     preview/                   uma página A4 por arquivo (Capa, Diagnóstico...)
     EditorPanel.tsx            barra lateral do editor
     editor/                    grupos do formulário e campos reutilizáveis
-    Wizard.tsx                 assistente de 3 passos
-    TemplateIcon.tsx
 ```
 
 ## Como customizar
 
-- **Novo tema:** crie um bloco `[data-theme="meu-tema"]` em `src/styles.css`, adicione o id em `ThemeId` e em `THEMES` (`src/lib/proposal.ts`).
-- **Novo par de fontes:** adicione a fonte no `<link>` do `index.html`, crie `#print-root[data-font="..."]` em `styles.css` e registre em `FONT_PAIRS`.
-- **Novo modelo de segmento:** copie um objeto de `TEMPLATES` em `src/lib/templates.ts` e ajuste o texto.
-- **Nova seção do documento:** crie o componente em `components/proposal/preview/`, adicione o id em `SectionId`/`SECTION_LABELS` e o `case` em `ProposalPreview.tsx`.
-
-## Licença
-
-MIT
+- **Textos e valores padrão:** edite `DPNEXT_APP_TEMPLATE` em `src/lib/templates.ts`.
+- **Cores da marca:** variáveis `[data-theme="dp-next"]` e `[data-theme="dp-next-claro"]` em `src/styles.css`.
+- **Logos:** troque os arquivos em `src/assets/` mantendo os nomes.
 
 ## Publicar online
 

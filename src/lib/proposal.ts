@@ -5,8 +5,8 @@ import { persist } from "zustand/middleware";
    Tipos
    ------------------------------------------------------------------ */
 
-export type ThemeId = "dark-gold" | "dark-indigo" | "light-editorial" | "minimal-mono";
-export type FontPairId = "modern" | "editorial" | "classic" | "tech" | "minimal" | "serif-bold";
+export type ThemeId = "dp-next" | "dp-next-claro";
+export type FontPairId = "montserrat" | "manrope";
 export type PayMode = "cartao" | "pix" | "boleto";
 export type SectionId = "diagnostico" | "metodo" | "valuestack" | "prova" | "investimento" | "fechamento";
 
@@ -112,20 +112,21 @@ export interface Proposal {
    Catálogos (temas, fontes, seções)
    ------------------------------------------------------------------ */
 
-export const THEMES: { id: ThemeId; label: string; accent: string; paper: string }[] = [
-  { id: "dark-gold", label: "Dark Gold", accent: "#d9a94a", paper: "#12141a" },
-  { id: "dark-indigo", label: "Dark Indigo", accent: "#7075f0", paper: "#10121c" },
-  { id: "light-editorial", label: "Light Editorial", accent: "#a37918", paper: "#ffffff" },
-  { id: "minimal-mono", label: "Minimal Mono", accent: "#ffffff", paper: "#111111" },
+/* Identidade DP NeXT (manual técnico v1.0): azul-marinho, azul elétrico, ciano e o laranja do X. */
+export const BRAND = {
+  company: "DP NeXT",
+  descriptor: "Soluções Digitais",
+  accent: "#087BFF",
+} as const;
+
+export const THEMES: { id: ThemeId; label: string; paper: string; accent: string }[] = [
+  { id: "dp-next", label: "Escuro (padrão)", paper: "#030A1B", accent: "#087BFF" },
+  { id: "dp-next-claro", label: "Claro (impressão)", paper: "#FFFFFF", accent: "#087BFF" },
 ];
 
 export const FONT_PAIRS: { id: FontPairId; label: string; display: string }[] = [
-  { id: "modern", label: "Moderna", display: "Space Grotesk" },
-  { id: "editorial", label: "Editorial", display: "Fraunces" },
-  { id: "classic", label: "Clássica", display: "Playfair Display" },
-  { id: "tech", label: "Tech", display: "Manrope" },
-  { id: "minimal", label: "Minimal", display: "Inter" },
-  { id: "serif-bold", label: "Serif Bold", display: "DM Serif Display" },
+  { id: "montserrat", label: "Montserrat + Inter", display: "Montserrat" },
+  { id: "manrope", label: "Manrope + Inter", display: "Manrope" },
 ];
 
 export const SECTION_LABELS: Record<SectionId, string> = {

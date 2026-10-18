@@ -1,98 +1,52 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------
-   Temas (variáveis CSS). O tema padrão é dark-gold.
+   Temas DP NeXT (cores do manual técnico v1.0)
+   Azul-marinho #030A1B · Azul elétrico #087BFF · Ciano #00D5FF
+   Laranja #FF7A00 · Âmbar #FFB000 · Branco frio #F4F7FB
    ------------------------------------------------------------------ */
-:root {
-  --app-bg: #0a0b0f;
-  --paper: #12141a;
-  --paper-2: #171a22;
-  --ink: #eee9dc;
-  --ink-dim: #9a9689;
-  --accent: #d9a94a;
-  --accent-2: #7075f0;
-  --border-soft: rgba(238, 233, 220, 0.08);
+:root,
+[data-theme="dp-next"] {
+  --app-bg: #030a1b;
+  --paper: #050f24;
+  --paper-2: #0a1932;
+  --ink: #f4f7fb;
+  --ink-dim: #8fa3c2;
+  --accent: #087bff;
+  --accent-2: #00d5ff;
+  --highlight: #ff7a00;
+  --border-soft: rgba(0, 213, 255, 0.12);
+  --logo-blend: lighten;
 
-  --font-display-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-display-family: "Montserrat", "Inter", system-ui, sans-serif;
   --font-body-family: "Inter", system-ui, sans-serif;
-  --font-mono-family: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono-family: "JetBrains Mono", ui-monospace, monospace;
 }
 
-[data-theme="dark-gold"] {
-  --app-bg: #0a0b0f;
-  --paper: #12141a;
-  --paper-2: #171a22;
-  --ink: #eee9dc;
-  --ink-dim: #9a9689;
-  --accent: #d9a94a;
-  --accent-2: #7075f0;
-  --border-soft: rgba(238, 233, 220, 0.08);
-}
-
-[data-theme="dark-indigo"] {
-  --app-bg: #08080f;
-  --paper: #10121c;
-  --paper-2: #161927;
-  --ink: #ece9fc;
-  --ink-dim: #9995c0;
-  --accent: #7075f0;
-  --accent-2: #d9a94a;
-  --border-soft: rgba(236, 233, 252, 0.08);
-}
-
-[data-theme="light-editorial"] {
-  --app-bg: #f4f1ea;
-  --paper: #fff;
-  --paper-2: #f8f5ee;
-  --ink: #17150f;
-  --ink-dim: #6b6555;
-  --accent: #a37918;
-  --accent-2: #2d3a8c;
-  --border-soft: rgba(23, 21, 15, 0.1);
-}
-
-[data-theme="minimal-mono"] {
-  --app-bg: #0a0a0a;
-  --paper: #111;
-  --paper-2: #181818;
-  --ink: #f5f5f5;
-  --ink-dim: #9e9e9e;
-  --accent: #fff;
-  --accent-2: #cfcfcf;
-  --border-soft: rgba(245, 245, 245, 0.1);
+[data-theme="dp-next-claro"] {
+  --app-bg: #eef2f8;
+  --paper: #ffffff;
+  --paper-2: #f2f6fc;
+  --ink: #030a1b;
+  --ink-dim: #52617a;
+  --accent: #0868d9;
+  --accent-2: #00a6c7;
+  --highlight: #e86a00;
+  --border-soft: rgba(3, 10, 27, 0.1);
+  --logo-blend: multiply;
 }
 
 /* ------------------------------------------------------------------
-   Pares de fontes do documento
+   Pares de fontes do documento (sugestão do manual: Montserrat, Inter, Manrope)
    ------------------------------------------------------------------ */
-#print-root[data-font="modern"] {
-  --font-display-family: "Space Grotesk", sans-serif;
+#print-root[data-font="montserrat"] {
+  --font-display-family: "Montserrat", sans-serif;
   --font-body-family: "Inter", sans-serif;
-  --font-mono-family: "IBM Plex Mono", monospace;
+  --font-mono-family: "JetBrains Mono", monospace;
 }
-#print-root[data-font="editorial"] {
-  --font-display-family: "Fraunces", serif;
-  --font-body-family: "Inter", sans-serif;
-  --font-mono-family: "IBM Plex Mono", monospace;
-}
-#print-root[data-font="classic"] {
-  --font-display-family: "Playfair Display", serif;
-  --font-body-family: "Lora", serif;
-  --font-mono-family: "IBM Plex Mono", monospace;
-}
-#print-root[data-font="tech"] {
+#print-root[data-font="manrope"] {
   --font-display-family: "Manrope", sans-serif;
-  --font-body-family: "Manrope", sans-serif;
-  --font-mono-family: "JetBrains Mono", monospace;
-}
-#print-root[data-font="minimal"] {
-  --font-display-family: "Inter", sans-serif;
   --font-body-family: "Inter", sans-serif;
-  --font-mono-family: "JetBrains Mono", monospace;
-}
-#print-root[data-font="serif-bold"] {
-  --font-display-family: "DM Serif Display", serif;
-  --font-body-family: "DM Sans", sans-serif;
   --font-mono-family: "JetBrains Mono", monospace;
 }
 
@@ -108,6 +62,7 @@
   --color-ink-dim: var(--ink-dim);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
+  --color-highlight: var(--highlight);
   --color-soft: var(--border-soft);
 
   --font-display: var(--font-display-family);
@@ -138,8 +93,9 @@ body {
 .paper-radial {
   background-color: var(--paper);
   background-image:
-    radial-gradient(ellipse 80% 60% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 0% 100%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 60%);
+    radial-gradient(ellipse 70% 55% at 0% 0%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 60%),
+    radial-gradient(ellipse 45% 35% at 100% 0%, color-mix(in srgb, var(--highlight) 14%, transparent), transparent 65%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 60%);
 }
 
 .chip {
@@ -201,6 +157,11 @@ body {
   position: relative;
   overflow: hidden;
   box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+/* O logo é um JPG com fundo; o blend faz o fundo sumir sobre o papel (escuro ou claro). */
+.brand-logo {
+  mix-blend-mode: var(--logo-blend);
 }
 
 .no-break {

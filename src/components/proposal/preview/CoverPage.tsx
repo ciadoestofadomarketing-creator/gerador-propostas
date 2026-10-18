@@ -13,7 +13,7 @@ export function CoverPage({ p }: { p: Proposal }) {
     <A4Page radial>
       <div className="flex min-h-[253mm] flex-col">
         <div className="flex items-center justify-between">
-          <BrandMark p={p} />
+          <BrandMark p={p} size="lg" />
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-dim">Proposta comercial</span>
         </div>
 
@@ -23,7 +23,7 @@ export function CoverPage({ p }: { p: Proposal }) {
             {p.coverHeadline}
           </h1>
           <p className="mt-8 max-w-[140mm] text-lg leading-relaxed text-ink-dim">{p.coverSubtitle}</p>
-          <p className="mt-10 font-mono text-xs uppercase tracking-[0.2em] text-accent">{p.offer}</p>
+          <p className="mt-10 font-mono text-xs uppercase tracking-[0.2em] text-highlight">{p.offer}</p>
         </div>
 
         <div className="grid grid-cols-4 gap-6 border-t border-soft pt-6">

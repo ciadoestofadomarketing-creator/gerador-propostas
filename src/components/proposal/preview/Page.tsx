@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
-import type { Proposal } from "../../../lib/proposal";
+import logoClaro from "../../../assets/dpnext-logo-claro.png";
+import logoEscuro from "../../../assets/dpnext-logo-escuro.png";
+import { BRAND, type Proposal } from "../../../lib/proposal";
 
 interface A4PageProps {
   children: ReactNode;
@@ -52,9 +54,16 @@ export function PageFooter({ p, page }: PageFooterProps) {
   );
 }
 
-export function BrandMark({ p }: { p: Proposal }) {
-  if (p.logoDataUrl) {
-    return <img src={p.logoDataUrl} alt={p.company} className="h-10 max-w-[180px] object-contain object-left" />;
-  }
-  return <span className="wordmark text-2xl text-ink">{p.company}</span>;
+/** Logo da DP NeXT na versão certa para o tema. Um logo enviado no editor substitui o padrão. */
+export function BrandMark({ p, size = "md" }: { p: Proposal; size?: "md" | "lg" }) {
+  const custom = p.logoDataUrl;
+  const src = custom ?? (p.theme === "dp-next-claro" ? logoClaro : logoEscuro);
+  const height = size === "lg" ? "h-16" : "h-11";
+  return (
+    <img
+      src={src}
+      alt={`${BRAND.company} ${BRAND.descriptor}`}
+      className={`${custom ? "" : "brand-logo"} ${height} w-auto max-w-[220px] object-contain object-left`}
+    />
+  );
 }

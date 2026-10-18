@@ -6,11 +6,17 @@ import type { GroupProps } from "./types";
 
 export function ClientGroup({ p, set }: GroupProps) {
   return (
-    <Group title="B · Cliente">
+    <Group title="B · Cliente" defaultOpen>
       <TextField label="Nome do cliente" value={p.clientName} onChange={(clientName) => set({ clientName })} />
-      <TextField label="Empresa do cliente" value={p.clientCompany} onChange={(clientCompany) => set({ clientCompany })} />
+      <TextField label="Empresa do cliente" value={p.clientCompany} onChange={(clientCompany) => set(renameClient(p, clientCompany))} />
     </Group>
   );
+}
+
+/** Troca o nome da empresa do cliente e atualiza a mensagem final, que cita esse nome. */
+function renameClient(p: GroupProps["p"], clientCompany: string) {
+  const closingMessage = p.clientCompany ? p.closingMessage.split(p.clientCompany).join(clientCompany) : p.closingMessage;
+  return { clientCompany, closingMessage };
 }
 
 export function ProposalGroup({ p, set }: GroupProps) {

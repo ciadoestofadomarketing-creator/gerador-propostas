@@ -19,7 +19,7 @@ export function EditorPage() {
   const handleExport = async () => {
     setExporting(true);
     try {
-      await exportPdf(`proposta-${slug(p.clientCompany)}.pdf`);
+      await exportPdf(`proposta-dp-next-${slug(p.clientCompany)}.pdf`);
     } catch (error) {
       console.error(error);
       alert("Não foi possível gerar o PDF. Tente novamente.");
@@ -64,7 +64,7 @@ function MobileToggle({ view, onChange }: { view: MobileView; onChange: (v: Mobi
           type="button"
           onClick={() => onChange(id)}
           className={`flex flex-1 items-center justify-center gap-2 rounded-lg py-2 text-sm font-medium ${
-            view === id ? "bg-accent text-app-bg" : "text-ink-dim"
+            view === id ? "bg-accent text-white" : "text-ink-dim"
           }`}
         >
           <Icon size={16} /> {label}
@@ -91,7 +91,7 @@ function NotFound() {
     <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center">
       <h1 className="wordmark text-3xl">Proposta não encontrada</h1>
       <p className="max-w-md text-sm text-ink-dim">Ela pode ter sido criada em outro navegador ou os dados locais foram apagados.</p>
-      <Link to="/" className="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-app-bg hover:brightness-110">
+      <Link to="/nova" className="rounded-xl bg-accent px-5 py-3 text-sm font-semibold text-white hover:brightness-110">
         Criar nova proposta
       </Link>
     </div>
