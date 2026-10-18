@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Temas (variáveis CSS). O tema padrão é dark-gold.
+   ------------------------------------------------------------------ */
+:root {
+  --app-bg: #0a0b0f;
+  --paper: #12141a;
+  --paper-2: #171a22;
+  --ink: #eee9dc;
+  --ink-dim: #9a9689;
+  --accent: #d9a94a;
+  --accent-2: #7075f0;
+  --border-soft: rgba(238, 233, 220, 0.08);
+
+  --font-display-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body-family: "Inter", system-ui, sans-serif;
+  --font-mono-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+[data-theme="dark-gold"] {
+  --app-bg: #0a0b0f;
+  --paper: #12141a;
+  --paper-2: #171a22;
+  --ink: #eee9dc;
+  --ink-dim: #9a9689;
+  --accent: #d9a94a;
+  --accent-2: #7075f0;
+  --border-soft: rgba(238, 233, 220, 0.08);
+}
+
+[data-theme="dark-indigo"] {
+  --app-bg: #08080f;
+  --paper: #10121c;
+  --paper-2: #161927;
+  --ink: #ece9fc;
+  --ink-dim: #9995c0;
+  --accent: #7075f0;
+  --accent-2: #d9a94a;
+  --border-soft: rgba(236, 233, 252, 0.08);
+}
+
+[data-theme="light-editorial"] {
+  --app-bg: #f4f1ea;
+  --paper: #fff;
+  --paper-2: #f8f5ee;
+  --ink: #17150f;
+  --ink-dim: #6b6555;
+  --accent: #a37918;
+  --accent-2: #2d3a8c;
+  --border-soft: rgba(23, 21, 15, 0.1);
+}
+
+[data-theme="minimal-mono"] {
+  --app-bg: #0a0a0a;
+  --paper: #111;
+  --paper-2: #181818;
+  --ink: #f5f5f5;
+  --ink-dim: #9e9e9e;
+  --accent: #fff;
+  --accent-2: #cfcfcf;
+  --border-soft: rgba(245, 245, 245, 0.1);
+}
+
+/* ------------------------------------------------------------------
+   Pares de fontes do documento
+   ------------------------------------------------------------------ */
+#print-root[data-font="modern"] {
+  --font-display-family: "Space Grotesk", sans-serif;
+  --font-body-family: "Inter", sans-serif;
+  --font-mono-family: "IBM Plex Mono", monospace;
+}
+#print-root[data-font="editorial"] {
+  --font-display-family: "Fraunces", serif;
+  --font-body-family: "Inter", sans-serif;
+  --font-mono-family: "IBM Plex Mono", monospace;
+}
+#print-root[data-font="classic"] {
+  --font-display-family: "Playfair Display", serif;
+  --font-body-family: "Lora", serif;
+  --font-mono-family: "IBM Plex Mono", monospace;
+}
+#print-root[data-font="tech"] {
+  --font-display-family: "Manrope", sans-serif;
+  --font-body-family: "Manrope", sans-serif;
+  --font-mono-family: "JetBrains Mono", monospace;
+}
+#print-root[data-font="minimal"] {
+  --font-display-family: "Inter", sans-serif;
+  --font-body-family: "Inter", sans-serif;
+  --font-mono-family: "JetBrains Mono", monospace;
+}
+#print-root[data-font="serif-bold"] {
+  --font-display-family: "DM Serif Display", serif;
+  --font-body-family: "DM Sans", sans-serif;
+  --font-mono-family: "JetBrains Mono", monospace;
+}
+
+/* ------------------------------------------------------------------
+   Ponte entre as variáveis e os utilitários do Tailwind
+   (bg-paper, text-ink, border-soft, font-display...)
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-app-bg: var(--app-bg);
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-dim: var(--ink-dim);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-soft: var(--border-soft);
+
+  --font-display: var(--font-display-family);
+  --font-sans: var(--font-body-family);
+  --font-mono: var(--font-mono-family);
+}
+
+html,
+body {
+  background: var(--app-bg);
+  color: var(--ink);
+  font-family: var(--font-body-family);
+  -webkit-font-smoothing: antialiased;
+}
+
+#print-root {
+  font-family: var(--font-body-family);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------
+   Utilitários do documento
+   ------------------------------------------------------------------ */
+.paper {
+  background-color: var(--paper);
+}
+
+.paper-radial {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 0% 100%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 60%);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-mono-family);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+  border: 1px solid var(--border-soft);
+}
+
+.chip-accent {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.dot-lead {
+  flex: 1;
+  min-width: 1.5rem;
+  border-bottom: 2px dotted color-mix(in srgb, var(--ink-dim) 45%, transparent);
+  transform: translateY(-0.3em);
+}
+
+.invest-card {
+  border-radius: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  background-color: var(--paper-2);
+  background-image: radial-gradient(ellipse 90% 70% at 50% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 15%, transparent),
+    0 24px 60px -20px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.bonus-card {
+  border-radius: 14px;
+  border: 1px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--paper));
+}
+
+.gold-check::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.6rem;
+}
+
+.a4-page {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 22mm 20mm;
+  page-break-after: always;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+}
+
+.no-break {
+  break-inside: avoid;
+}
+
+.wordmark {
+  font-family: var(--font-display-family);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.pdf-exporting .a4-page {
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* ------------------------------------------------------------------
+   Impressão (Ctrl+P): só o documento
+   ------------------------------------------------------------------ */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-root,
+  #print-root * {
+    visibility: visible;
+  }
+
+  #print-root {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .a4-page {
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+}
